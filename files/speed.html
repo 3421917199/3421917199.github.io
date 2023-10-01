@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internet Speed Test</title>
+    <style>
+        #startButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        // Function to test internet speed
+        function testSpeed() {
+            var startTime, endTime;
+            var downloadSize = 5; // Size of file to download in MB
+            var downloadUrl = "https://example.com/file-to-download"; // URL of the file to download
+
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Set up a callback function to measure the download time
+            xhr.onloadstart = function () {
+                startTime = new Date().getTime();
+            }
+
+            xhr.onloadend = function () {
+                endTime = new Date().getTime();
+                var duration = (endTime - startTime) / 1000; // Calculate duration in seconds
+                var downloadSpeed = (downloadSize / duration).toFixed(2); // Calculate download speed in Mbps
+
+                // Display the result
+                document.getElementById("result").innerHTML = "Download Speed: " + downloadSpeed + " Mbps";
+            }
+
+            // Start the download
+            xhr.open("GET", downloadUrl, true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Internet Speed Test</h1>
+    <button id="startButton" onclick="testSpeed()">Start Test</button>
+    <p id="result"></p>
+</body>
+</html>
