@@ -1,1 +1,31 @@
-急急急
+<!DOCTYPE html>
+<html>
+<head>
+    <title>访问时间校准</title>
+</head>
+<body>
+    <h1>访问时间校准</h1>
+    <p>当前时间：02:21, 星期一, 2023年10月2日</p>
+    <p>中国首都北京时间：时间校准后的时间点以后的6小时内可以访问</p>
+    <p>访问链接：</p>
+    <div id="link"></div>
+
+    <script>
+        function displayLink() {
+            var currentTime = new Date();
+            var targetTime = new Date(currentTime.getTime() + (6 * 60 * 60 * 1000)); // Add 6 hours to current time
+
+            if (currentTime < targetTime) {
+                var link = document.createElement("a");
+                link.href = "vless://c20c7768-6e33-4319-a18e-11d7c78580cc@8.219.237.250:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=worker-aged-block-fbd5.3421917199.workers.dev&type=ws#Alibaba+Singapore";
+                link.textContent = "点击访问";
+                document.getElementById("link").appendChild(link);
+            } else {
+                document.getElementById("link").textContent = "超时";
+            }
+        }
+
+        displayLink();
+    </script>
+</body>
+</html>
